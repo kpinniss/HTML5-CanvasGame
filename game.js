@@ -41,7 +41,22 @@ class Game{
         this.gameobject.ctx = this.gameArea.context;
         this.gameobject.ctx.fillStyle = this.color;
         this.gameobject.ctx.fillRect(this.gameobject.x, this.gameobject.y, this.gameobject.width, this.gameobject.height);
-        
+        this.checkGameArea();
+    }
+
+    checkGameArea(){
+        if(this.gameobject.x >= this.gameArea.canvas.width - this.gameobject.width){
+            this.gameobject.x = this.gameArea.canvas.width - this.gameobject.width;
+        }
+        if(this.gameobject.y >= this.gameArea.canvas.height - this.gameobject.height){
+            this.gameobject.y = this.gameArea.canvas.height - this.gameobject.height;
+        }
+        if(this.gameobject.x <= 0){
+            this.gameobject.x = 0;
+        }
+        if(this.gameobject.y <= 0){
+            this.gameobject.y = 0;
+        }
     }
 
     playerController(){
@@ -66,8 +81,7 @@ function startGame(){
     
    var gameArea = new GameArea(550, 350,"lightBlue");
    var player = new GameObject(50,50,"blue",20,20,gameArea);
+   var obj1 = new GameObject(50,50,"red",60,60,gameArea);
    var game = new Game(gameArea, player);
 }
-
-
 
